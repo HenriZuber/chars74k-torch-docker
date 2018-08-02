@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    {% for image in idx %}
+        <img src="{{ image[0] }}">
+        <p>{{ image[1] }} </p>
+    {% endfor %}
+    <a href = "/mat_conf_moche">
+    {% raw %}
+            <button type="submit" class="btn btn-primary" ng-disabled="loading">mat_conf pas ouf</button>
+    {% endraw %}
+    </a>    
+    <a href = "/mat_conf_mieux">
+    {% raw %}
+            <button type="submit" class="btn btn-primary" ng-disabled="loading">mat_conf_mieux</button>
+    {% endraw %}
+    </a>    
+
+
+</body>
+</html>

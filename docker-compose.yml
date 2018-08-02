@@ -1,0 +1,40 @@
+version: '2.3'
+services:
+  main_1:
+    build: ./
+    runtime: nvidia
+    volumes:
+    - ./:/opt/code
+    - ../English:/data/English
+    - ./my_logs:/logs
+    environment:
+      NVIDIA_VISIBLE_DEVICES: 0
+  tensorboard:                         
+      image: tensorflow/tensorflow       
+      command: tensorboard --logdir /logs
+      ports:                             
+        - 6006:6006                      
+      volumes:                           
+        - ./my_logs:/logs
+        - ./:/opt/code
+        - ../English:/data/English  
+  main_2:
+    build: ./
+    runtime: nvidia
+    volumes:
+    - ./:/opt/code
+    - ../English:/data/English
+    - ./my_logs:/logs
+    environment:
+      NVIDIA_VISIBLE_DEVICES: 1
+  web:
+   build: ./
+   ports:
+     - "5000:5000"
+   runtime: nvidia
+   environment:
+      NVIDIA_VISIBLE_DEVICES: 0
+   volumes:
+     - ./:/opt/code
+     - ../English:/data/English
+     - ./my_logs:/logs
